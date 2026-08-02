@@ -4,8 +4,7 @@ from unittest.mock import mock_open, patch
 import pytest
 
 from src.product import Product
-from src.utils import (create_categories_from_json, create_products_from_json,
-                       read_json)
+from src.utils import create_categories_from_json, create_products_from_json, read_json
 
 
 def test_read_json_success():
@@ -29,24 +28,22 @@ def test_read_json_file_not_found():
 
 
 def test_create_products_from_json(test_data):
-    """Тест создания ВСЕХ продуктов из JSON данных"""
-
+    """Тест - создания ВСЕХ продуктов из JSON данных"""
 
     all_products = create_products_from_json(test_data)
 
     # Общее кол-во продуктов
     assert len(all_products) == 4
 
-
     for product in all_products:
         assert isinstance(product, Product)
 
-    # Каткгория - Смартфоны
+    # Категория - Смартфоны
     assert all_products[0].name == "Samsung Galaxy C23 Ultra"
     assert all_products[1].name == "Iphone 15"
     assert all_products[2].name == "Xiaomi Redmi Note 11"
 
-    # Каткгория -Телевизоров
+    # Категория -Телевизоров
     assert all_products[3].name == '55" QLED 4K'
     assert all_products[3].price == 123000.0
     assert all_products[3].quantity == 7
