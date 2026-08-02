@@ -70,5 +70,5 @@ def test_create_categories_from_json():
 
     assert len(categories) == 1
     assert categories[0].name == "Смартфоны"
-    assert len(categories[0].products) == 1
-    assert categories[0].products[0].name == "Samsung Galaxy C23 Ultra"
+    assert isinstance(categories[0].products, str)
+    assert "Samsung Galaxy C23 Ultra" in categories[0].products
