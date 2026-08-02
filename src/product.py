@@ -1,7 +1,7 @@
 class Product:
     name: str  # название
     description: str  # описание
-    price: float  # цена
+    # price: float  # цена
     quantity: int  # количество в наличии
 
     def __init__(
@@ -9,5 +9,22 @@ class Product:
     ) -> None:
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
+
+    @property
+    def price(self) -> float:
+        return self.__price
+
+    @price.setter
+    def price(self, price: float) -> None:
+        self.__price = price
+
+    @classmethod
+    def new_product(cls, product_data: dict):
+        return cls(
+            name=product_data["name"],
+            description=product_data["description"],
+            price=float(product_data["price"]),
+            quantity=int(product_data["quantity"]),
+        )
