@@ -1,11 +1,14 @@
 import pytest
+
 from src.category import Category
 from src.product import Product
 
 
 def test_category_creation(fist_product, second_product) -> None:
     """Тест создания категории с продуктами"""
-    category = Category("Смартфоны", "Описание смартфонов", [fist_product, second_product])
+    category = Category(
+        "Смартфоны", "Описание смартфонов", [fist_product, second_product]
+    )
 
     assert category.name == "Смартфоны"
     assert category.description == "Описание смартфонов"

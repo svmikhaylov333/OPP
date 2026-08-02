@@ -1,9 +1,10 @@
-from src.product import Product
 from typing import List
+
+from src.product import Product
 
 
 class Category:
-    name: str # название
+    name: str  # название
     description: str
     products: List[Product]
     category_count: int = 0
@@ -14,6 +15,5 @@ class Category:
         self.description = description
         self.products = products
 
-        Category.category_count +=1
+        Category.category_count += 1
         Category.product_count += len(self.products)
-
