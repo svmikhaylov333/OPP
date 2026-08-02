@@ -20,6 +20,10 @@ class Product:
     def price(self, price: float) -> None:
         if price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
+        elif price < self.__price:
+            answer = input(f"Понизить цену с {self.__price} до {price}? (y/n): ")
+            if answer.lower() == "y":
+                self.__price = price
         else:
             self.__price = price
 
