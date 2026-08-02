@@ -1,4 +1,7 @@
 from test.conftest import fist_product
+from unittest.mock import patch
+
+import pytest
 
 from src.product import Product
 
@@ -25,3 +28,23 @@ def test_product_creation_with_name(fist_product, second_product):
     assert second_product.description == "description second product"
     assert second_product.price == 2.0
     assert second_product.quantity == 2
+
+
+def test_price_setter_with_positive_change():
+    """Тест - повышение цены"""
+    product = Product("Test", "Desc", 100.0, 10)
+    product.price = 200.0
+    assert product.price == 200.0
+    product.price = 250.0
+    assert product.price == 250.0
+
+
+@pytest.mark.usefixtures("capsys")
+@patch("builtins.input", return_value="y")
+def test_price_setter_decrease_yes(mock_input):
+    """Тест - понижение цены"""
+    product = Product("Test", "Desc", 200.0, 10)
+
+    product.price = 100.0
+    mock_input.assert_called_once_with("Понизить цену с 200.0 до 100.0? (y/n): ")
+    assert product.price == 100.0
