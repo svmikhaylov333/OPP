@@ -12,9 +12,10 @@ def test_category_creation(fist_product, second_product) -> None:
 
     assert category.name == "Смартфоны"
     assert category.description == "Описание смартфонов"
-    assert len(category.products) == 2
-    assert category.products[0] == fist_product
-    assert category.products[1] == second_product
+    assert isinstance(category.products, str)
+    assert "Fist Product" in category.products
+    assert "Second Product" in category.products
+    assert "руб. Остаток:" in category.products
 
     assert Category.category_count == 1
     assert Category.product_count == 2
