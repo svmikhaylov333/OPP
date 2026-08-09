@@ -5,8 +5,8 @@ from src.product import Product
 
 
 @pytest.fixture
-def fist_product() -> Product:
-    return Product("Fist Product", "description first product", 1.0, 1)
+def first_product() -> Product:
+    return Product("First Product", "description first product", 1.0, 1)
 
 
 @pytest.fixture
