@@ -21,3 +21,8 @@ def test_category_creation(fist_product, second_product) -> None:
     assert Category.product_count == 2
     assert category.category_count == 1
     assert category.product_count == 2
+
+
+def test_category_add(fist_product, second_product) -> None:
+    """Тест - проверка складывания метод add"""
+    assert fist_product + second_product == 5

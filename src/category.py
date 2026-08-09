@@ -1,4 +1,3 @@
-
 from typing import List
 
 from src.product import Product
@@ -22,10 +21,8 @@ class Category:
     def __str__(self):
 
         # return f"{self.name}, количество продуктов: {len(self.__products)} шт."
-        total_quantity =sum(prod.quantity for prod in self.__products)
+        total_quantity = sum(prod.quantity for prod in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
-
-
 
     # Геттер для приватного атрибута __products
     @property
