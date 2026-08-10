@@ -49,7 +49,7 @@ eval $(poetry env activate)
 
 ### Запуск программы
 ```bash
-python main.py
+python main_bak.py
 ```
 
 ### Создание объектов
