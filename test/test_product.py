@@ -2,7 +2,10 @@ from unittest.mock import patch
 
 import pytest
 
+from src.category import Category
+from src.lawngrass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_product_creation():
@@ -52,3 +55,54 @@ def test_price_setter_decrease_yes(mock_input):
 def test_product_str(first_product: Product) -> None:
     """Тест - метод __str__"""
     assert str(first_product) == "First Product, 1.0 руб. Остаток: 1 шт."
+
+
+def test_add_product_invalid():
+    """Тест - добавление не Product вызывает ошибку"""
+    category = Category("name", "desc", [])
+    with pytest.raises(TypeError):
+        category.add_product("jkjrhekhg")
+    with pytest.raises(TypeError):
+        category.add_product(123456)
+
+
+def test_add_product():
+    """Сложение продукта одного подкласса"""
+    smartphone1 = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
+    )
+    smartphone2 = Smartphone(
+        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
+    )
+    assert smartphone1 + smartphone2 == 2580000.0
+
+
+def test_add_product_different() -> None:
+    smartphone1 = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
+    )
+    grass1 = LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый",
+    )
+    with pytest.raises(TypeError):
+        smartphone1 + grass1

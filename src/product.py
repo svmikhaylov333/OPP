@@ -18,7 +18,9 @@ class Product:
     def __add__(self, other):
         if type(other) is type(self):
             return self.quantity * self.__price + other.quantity * other.__price
-        raise TypeError('можно складывать товары только из одинаковых классов продуктов')
+        raise TypeError(
+            "можно складывать товары только из одинаковых классов продуктов"
+        )
 
     @property
     def price(self) -> float:
