@@ -1,4 +1,3 @@
-from test.conftest import fist_product
 from unittest.mock import patch
 
 import pytest
@@ -19,11 +18,11 @@ def test_product_creation():
     assert product.quantity == 5
 
 
-def test_product_creation_with_name(fist_product, second_product):
-    assert fist_product.name == "Fist Product"
-    assert fist_product.description == "description first product"
-    assert fist_product.price == 1.0
-    assert fist_product.quantity == 1
+def test_product_creation_with_name(first_product, second_product):
+    assert first_product.name == "First Product"
+    assert first_product.description == "description first product"
+    assert first_product.price == 1.0
+    assert first_product.quantity == 1
     assert second_product.name == "Second Product"
     assert second_product.description == "description second product"
     assert second_product.price == 2.0
@@ -48,3 +47,8 @@ def test_price_setter_decrease_yes(mock_input):
     product.price = 100.0
     mock_input.assert_called_once_with("Понизить цену с 200.0 до 100.0? (y/n): ")
     assert product.price == 100.0
+
+
+def test_product_str(first_product: Product) -> None:
+    """Тест - метод __str__"""
+    assert str(first_product) == "First Product, 1.0 руб. Остаток: 1 шт."

@@ -5,13 +5,30 @@ from src.product import Product
 
 
 @pytest.fixture
-def fist_product() -> Product:
-    return Product("Fist Product", "description first product", 1.0, 1)
+def first_product() -> Product:
+    return Product("First Product", "description first product", 1.0, 1)
 
 
 @pytest.fixture
 def second_product() -> Product:
     return Product("Second Product", "description second product", 2.0, 2)
+
+
+@pytest.fixture
+def products_list() -> list[Product]:
+
+    return [
+        Product(
+            "Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+        ),
+        Product("Iphone 15", "512GB, Gray space", 210000.0, 8),
+        Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14),
+    ]
+
+
+@pytest.fixture
+def category(products_list) -> Category:
+    return Category("Смартфоны", "Описание", products_list)
 
 
 @pytest.fixture
