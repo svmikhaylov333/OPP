@@ -69,6 +69,36 @@ category = Category("Смартфоны", "Описание смартфонов
 print(f"Всего категорий: {Category.category_count}")  # 1
 print(f"Всего товаров: {Category.product_count}")     # 2
 ```
+Создание подклассов Product
+```python
+
+from src.smartphone import Smartphone
+from src.lawngrass import LawnGrass
+
+
+smartphone1 = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
+    )
+
+grass1 = LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый"
+ )
+ 
+
+```
 Загрузка данных из JSON
 ```python
 from src.utils import read_json, create_categories_from_json
@@ -169,8 +199,11 @@ pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
 ## To do
  - [x] классы Product, Category
  - [x] работа с json
+ - [x] Классы-наследники Smartphone и LawnGrass
+ - [x] Итератор для продуктов
+ - [x] Защита сложения товаров
+ - [x] Защита добавления в категорию
  - [ ] ...
-
 ---
 
 ## Команда проекта

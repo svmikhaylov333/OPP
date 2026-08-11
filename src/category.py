@@ -34,6 +34,10 @@ class Category:
 
     # метод добавления товаров в категорию
     def add_product(self, product: Product) -> None:
+        if not isinstance(product, Product):
+            raise TypeError(
+                " в список нельзя добавить ничего другого кроме Product и его наследников"
+            )
         self.__products.append(product)
         Category.product_count += 1
 

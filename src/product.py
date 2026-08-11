@@ -16,7 +16,11 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        return self.quantity * self.__price + other.quantity * other.__price
+        if type(other) is type(self):
+            return self.quantity * self.__price + other.quantity * other.__price
+        raise TypeError(
+            "можно складывать товары только из одинаковых классов продуктов"
+        )
 
     @property
     def price(self) -> float:
