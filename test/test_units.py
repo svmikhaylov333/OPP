@@ -4,7 +4,8 @@ from unittest.mock import mock_open, patch
 import pytest
 
 from src.product import Product
-from src.utils import create_categories_from_json, create_products_from_json, read_json
+from src.utils import (create_categories_from_json, create_products_from_json,
+                       read_json)
 
 
 def test_read_json_success():

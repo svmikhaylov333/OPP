@@ -1,17 +1,17 @@
 from abc import ABC, abstractmethod
 
 
-class BaseProduct(ABC):
+class BaseStoreEntity(ABC):
+    pass
 
     @abstractmethod
     def __str__(self) -> str:
         pass
 
     @abstractmethod
-    def __add__(self, other):
-        pass
+    def total_price(self) -> float:
+         pass
 
-    @classmethod
     @abstractmethod
-    def new_product(cls, *args, **kwargs):
+    def get_product_count(self) -> int:
         pass
