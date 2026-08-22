@@ -1,6 +1,6 @@
 from typing import List
 from src.product import Product
-
+from src.exceptions import ZeroQuantity
 
 class Category:
     name: str  # название
@@ -34,13 +34,25 @@ class Category:
 
 
     def add_product(self, product: Product) -> None:
-        """метод добавления товаров в категорию"""
+        """метод добавления товара в категорию"""
         if not isinstance(product, Product):
             raise TypeError(
-                " в список нельзя добавить ничего другого кроме Product и его наследников"
+                "В список нельзя добавить ничего другого кроме Product и его наследников"
             )
-        self.__products.append(product)
-        Category.product_count += 1
+
+        try:
+            if product.quantity == 0:
+                raise ZeroQuantity("Нельзя добавлять товар с нулевым кол-вом")
+        except ZeroQuantity as exp:
+            print(str(exp))
+        else:
+            self.__products.append(product)
+            Category.product_count += 1
+            print("Товар добавлен")
+
+        finally:
+            print("Обработка операции 'Добавление товара' завершена")
+
 
 
     def get_product_list(self):

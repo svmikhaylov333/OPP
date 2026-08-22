@@ -21,3 +21,11 @@ if __name__ == '__main__':
 
     category_empty = Category("Пустая категория", "Категория без продуктов", [])
     print(category_empty.middle_price())
+
+    #задание со звездочкой
+
+    product4 = Product("product4", "description", 1.0, 1)
+    product4.quantity = 0
+    print(product4)
+    category1.add_product(product4)
+
