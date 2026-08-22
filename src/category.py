@@ -1,5 +1,4 @@
 from typing import List
-
 from src.product import Product
 
 
@@ -24,16 +23,18 @@ class Category:
         total_quantity = sum(prod.quantity for prod in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
 
-    # Геттер для приватного атрибута __products
+
     @property
     def products(self):
+        """Геттер для приватного атрибута __products"""
         products_str = ""
         for product in self.__products:
             products_str += f"{str(product)}\n"
         return products_str
 
-    # метод добавления товаров в категорию
+
     def add_product(self, product: Product) -> None:
+        """метод добавления товаров в категорию"""
         if not isinstance(product, Product):
             raise TypeError(
                 " в список нельзя добавить ничего другого кроме Product и его наследников"
@@ -41,6 +42,14 @@ class Category:
         self.__products.append(product)
         Category.product_count += 1
 
-    # метод получения списка продуктов в категории
+
     def get_product_list(self):
+        """метод получения списка продуктов в категории"""
         return self.__products
+
+    def middle_price(self):
+        """метод получения среднего ценника всех товаров"""
+        try:
+            return sum([product.price for product in self.__products])/len(self.__products)
+        except ZeroDivisionError:
+            return 0
