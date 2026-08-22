@@ -5,7 +5,7 @@ from src.print_mixin import PrintMixin
 class Product(BaseProduct, PrintMixin):
     name: str  # название
     description: str  # описание
-    # price: float  # цена
+    price: float  # цена
     quantity: int  # количество в наличии
 
     def __init__(
@@ -15,7 +15,13 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+            print(f"Добавлено: {name} в количестве {quantity} шт ")
+        else:
+            print(f"quantity={quantity} <= 0, выбрасываем ValueError")
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+
 
         # super().__init__(name, description, price, quantity)
         super().__init__()
