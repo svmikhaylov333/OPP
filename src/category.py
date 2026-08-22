@@ -1,6 +1,8 @@
 from typing import List
-from src.product import Product
+
 from src.exceptions import ZeroQuantity
+from src.product import Product
+
 
 class Category:
     name: str  # название
@@ -23,7 +25,6 @@ class Category:
         total_quantity = sum(prod.quantity for prod in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
 
-
     @property
     def products(self):
         """Геттер для приватного атрибута __products"""
@@ -31,7 +32,6 @@ class Category:
         for product in self.__products:
             products_str += f"{str(product)}\n"
         return products_str
-
 
     def add_product(self, product: Product) -> None:
         """метод добавления товара в категорию"""
@@ -53,8 +53,6 @@ class Category:
         finally:
             print("Обработка операции 'Добавление товара' завершена")
 
-
-
     def get_product_list(self):
         """метод получения списка продуктов в категории"""
         return self.__products
@@ -62,6 +60,8 @@ class Category:
     def middle_price(self):
         """метод получения среднего ценника всех товаров"""
         try:
-            return sum([product.price for product in self.__products])/len(self.__products)
+            return sum([product.price for product in self.__products]) / len(
+                self.__products
+            )
         except ZeroDivisionError:
             return 0

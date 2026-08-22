@@ -1,4 +1,5 @@
 import pytest
+from pytest import CaptureFixture
 
 from src.category import Category
 from src.product import Product
@@ -31,3 +32,22 @@ def test_category_add(first_product, second_product) -> None:
 def test_category_str(category: Category) -> None:
     """Тест - метод __str__"""
     assert "Смартфоны, количество продуктов:" in str(category)
+
+
+def test_middle_price(category: Category) -> None:
+    """Тест - метод middle_price"""
+    assert category.middle_price() == 140333.33333333334
+
+
+def test_custom_exception(
+    category: Category, first_product: Product, capsys: CaptureFixture
+) -> None:
+    assert len(category.get_product_list()) == 3
+    first_product.quantity = 0
+    category.add_product(first_product)
+    message = capsys.readouterr().out
+    assert "Нельзя добавлять товар с нулевым кол-вом" in message
+    assert "Обработка операции 'Добавление товара' завершена" in message
+    assert (
+        len(category.get_product_list()) == 3
+    )  # проверка, что first_product не добавился
