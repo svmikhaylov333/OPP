@@ -10,7 +10,7 @@ class BaseStoreEntity(ABC):
 
     @abstractmethod
     def total_price(self) -> float:
-         pass
+        pass
 
     @abstractmethod
     def get_product_count(self) -> int:

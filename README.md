@@ -97,6 +97,14 @@ grass1 = LawnGrass(
         "Зеленый"
  )
 ```
+ZeroQuantity - Пользовательское исключение для обработки добавления товара с нулевым количеством (используется в add_product): 
+
+```python
+class ZeroQuantity(Exception):
+    def __init__(self, message=None):
+        super().__init__(message)
+
+```
 
 PrintMixin (миксин)
 Логирует создание объектов
@@ -109,7 +117,7 @@ ProductIterator
 Utils
 Функции для чтения JSON и создания объектов
 
-```
+
 Загрузка данных из JSON
 ```python
 from src.utils import read_json, create_categories_from_json
@@ -214,6 +222,7 @@ pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
  - [x] Итератор для продуктов
  - [x] Защита сложения товаров
  - [x] Защита добавления в категорию
+ - [x] Обработка исключений
  - [ ] ...
 ---
 
